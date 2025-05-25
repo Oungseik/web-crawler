@@ -10,4 +10,5 @@ func RegisterRoutes(f *fizz.Fizz) {
 	f.Use(middlewares.AuthMw)
 
 	routers.RegisterHealthRoutes(f)
+	routers.RegisterUserRoutes(f)
 }

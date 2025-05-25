@@ -4,4 +4,4 @@ Learning Go by trying to implement REST API
 
 ## Implementation List
 
-[x] open api specification
+- [x] open api specification

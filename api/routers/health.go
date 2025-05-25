@@ -1,15 +1,14 @@
 package routers
 
 import (
-	"github.com/gin-gonic/gin"
+	"github.com/loopfz/gadgeto/tonic"
+	"github.com/wI2L/fizz"
 	"net/http"
+	"web-crawler/api/routers/health"
 )
 
-func RegisterHealthRoutes(rg *gin.RouterGroup) {
-	health := rg.Group("/health")
-	health.GET("", getHealth)
-}
+func RegisterHealthRoutes(f *fizz.Fizz) {
+	g := f.Group("/health", "Health", "Collection of endpoint to check health of the server")
+	g.GET("", []fizz.OperationOption{fizz.Summary("Get the server status")}, tonic.Handler(health.CheckHealth, http.StatusOK))
 
-func getHealth(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{"message": "server is up and running"})
 }

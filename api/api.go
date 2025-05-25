@@ -1,14 +1,13 @@
 package api
 
 import (
-	"github.com/gin-gonic/gin"
+	"github.com/wI2L/fizz"
 	"web-crawler/api/middlewares"
 	"web-crawler/api/routers"
 )
 
-func RegisterRoutes(r *gin.Engine) {
-	apiGroup := r.Group("/api")
+func RegisterRoutes(f *fizz.Fizz) {
+	f.Use(middlewares.AuthMw)
 
-	apiGroup.Use(middlewares.AuthMw)
-	routers.RegisterHealthRoutes(apiGroup)
+	routers.RegisterHealthRoutes(f)
 }

@@ -2,11 +2,13 @@ package api
 
 import (
 	"github.com/gin-gonic/gin"
-	routers "web-crawler/api/routers"
+	"web-crawler/api/middlewares"
+	"web-crawler/api/routers"
 )
 
-func RegisterRoutes(router *gin.Engine) {
-	apiGroup := router.Group("/api")
+func RegisterRoutes(r *gin.Engine) {
+	apiGroup := r.Group("/api")
 
+	apiGroup.Use(middlewares.AuthMw)
 	routers.RegisterHealthRoutes(apiGroup)
 }
